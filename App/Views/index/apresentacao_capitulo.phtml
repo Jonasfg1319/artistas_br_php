@@ -1,0 +1,42 @@
+
+<div class="bg-light ">
+<?php //print_r($this->view->qcap); ?>
+<div class="container">
+ <div class="center row p-5">
+    <div class="col-md-4">
+      <img src="Midia/<?= $this->view->qcap['id_usuario']?>/Quadrinhos/<?=$this->view->qcap['titulo']?>/<?= $this->view->qcap['capa']?>" id="img-apresentacao">
+    </div>
+    <div class="col-md-8">
+        <h2 class="mt-2 mb-4"><?= $this->view->qcap['titulo']?></h2>
+         <p><?= $this->view->qcap['descricao']?></p>
+         <h3>Autor</h3>
+         <a href="/pagina_autor?autor=<?=$this->view->qcap['id_usuario']?>"><?= $this->view->qcap['autor']?></a>
+         <h3>Genêro</h3>
+        <p><a href=""><?=$this->view->qcap['genero']?></a>  </p>
+        <h4>Status</h4>
+        <p><a href=""><?= $this->view->qcap['status']?></a></p>
+        
+    </div>
+ </div>
+ <h3>Capítulos</h3>
+ <ul class="list-group p-2">
+     <?php foreach($this->view->capi as $key => $value){ ?>
+     <a href="/pag_cap?val=<?=$value['id'] ?>&qd=<?=$_GET['qd']?>" class="list-group-item"><?=$value['numero']?> - <?=$value['titulo']?></a>
+    <?php }?>    
+    <?php if($this->view->qcap['id_usuario'] == $_SESSION['id']){?>
+        <a href="/novo_capitulo?quadrinho=<?= $_GET['qd'] ?>&titulo=<?=$this->view->qcap['titulo']?>">Adicionar novo capitulo</a>
+    <?php } ?>
+ </ul>
+ 
+   
+</div>
+  
+</div>
+
+<footer class="text-light">
+    <div class="container">
+        <div class="center">
+            Rodapé
+        </div>
+    </div>
+</footer>

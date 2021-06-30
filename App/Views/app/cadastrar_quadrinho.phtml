@@ -1,0 +1,49 @@
+<div class="mt-4">
+  <div class="container bg-light">
+     <div class="center">
+        <h3>Cadastrar Quadrinho</h3>
+        <form action="/quadrinho_registrado" class="form" method="post"  enctype="multipart/form-data">
+           <label for="">Titulo</label>
+           <input class="form-control" name="titulo" type="text">
+           <label for="">Descrição</label>
+           <textarea class="form-control" name="descricao"> </textarea>
+           <label for="">Gênero(s)</label>
+           <select class="form-control" name="genero" id="">
+                 <option value="Terror">Terror</option>
+                 <option value="Ação">Ação</option>
+                 <option value="Aventura">Aventura</option>
+                 <option value="Drama">Drama</option>
+            </select>
+            <label for="">Status</label>
+            <select class="form-control" name="status" id="">
+                 <option value="Em Andamento">Em Andamento</option>
+                 <option value="Completo">Completo</option>
+            </select>
+            <label for="">Capa do quadrinho</label>
+            <input type="file" name="capa" onchange="previewImagem()"><br>
+            <img id="img-quadrinho"><br><br>
+            <input type="submit" class="btn btn-danger text-warning form-control" name="cadastrar">
+        </form>
+     </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+			function previewImagem(){
+				var imagem = document.querySelector('input[name=capa]').files[0];
+				var preview = document.querySelector("#img-quadrinho");
+				
+				var reader = new FileReader();
+				
+				reader.onloadend = function () {
+					preview.src = reader.result;
+				}
+				
+				if(imagem){
+					reader.readAsDataURL(imagem);
+				}else{
+					preview.src = "";
+				}
+			}
+		</script>

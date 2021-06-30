@@ -1,0 +1,76 @@
+<?php error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE); ?>
+<html>
+	<head>
+		<meta charset="utf-8" />
+    <meta content="Midia/Emilie.jpg" itemprop="image">
+		<title>
+    Artistas BR
+  </title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="/js/index.js"></script>
+
+	</head>
+
+	<body class="bg-dark">
+  <?php 
+
+
+
+  
+  if(!session_start()){
+        session_start();
+  } ?>
+<nav class="text-warning bg-danger p-3 ">
+ <div class=" container"> 
+  <div class="center row text-left">
+  <div class="col-md-2"><b>Artistas BR</b></div>
+  <?php if(isset($_SESSION['nick'])){ ?>
+   <div class="col-md-6">
+  <?php }else{ ?>
+    <div class="col-md-8">
+  <?php } ?>
+  <ul class="row">
+     <a href="\" class=" col-md-3 btn btn-danger text-warning">Home</a>
+       <a href="\conteudo" class=" col-md-3 btn btn-danger text-warning">Conteúdo</a>
+       <a href="" class=" col-md-3 btn btn-danger text-warning">Usuários</a>
+     
+     </ul>
+   </div>
+   <?php if(!isset($_SESSION['nick'])) {?>
+   <form action="/login" class="col-md-2">
+   <input type="submit" class="btn btn-warning " value="Entrar">
+   </form>
+   <?php }else {?>
+        <div class="col-md-4 row text-warning">
+           <a href="/painel_usuario" class="col-md-5 btn btn-danger text-warning">
+           <?= $_SESSION['nick'] ?>
+           </a>
+           <div class="col-md-4">
+           <img  id="img-perfil-index" src="Midia/<?= $_SESSION['img_perfil']?>">
+           </div>
+           
+           
+           <h5 class="col-md-3">
+             <a href="/fechar_sessao" class=" text-warning">Sair</a>
+           </h5>
+           
+        </div>
+   <?php } ?>
+  </div>
+   
+ </div>
+</nav>
+		<?= $this->content() ?>
+	</body>
+
+</html>
+

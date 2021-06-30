@@ -1,0 +1,48 @@
+
+<div class="bg-light">
+  <div class="container">
+     <div class="center p-5">
+     <h3>Seu painel</h3>
+     <div class="row">
+       <div class="col-md-4">
+       <a href="/editar_dados">Editar dados</a><br>
+       <a href="/mensagens?destinatario=<?=$_SESSION['id']?>&remetente=<?=$_SESSION['id']?>">Mensagens(0)</a><br>
+       <a href="">Seus comentários</a><br>
+       <a href="">Notificações</a><br>
+       </div>
+       <div class='col-md-8'>
+          <h5>Quadrinhos:</h5>
+          <?php if(count($this->view->todos_quadrinhos) == 0) {?>
+            <p>Não há nada por aqui ainda...</p>
+          <?php } ?>
+          <?php foreach($this->view->todos_quadrinhos as $key => $value){?>
+            <div class="col-md-3">
+            <a href="/apresentacao_capitulo?qd=<?=$value['id']?>"><img id="arte-painel"  src="Midia/<?=$_SESSION['id']?>/Quadrinhos/<?=$value['titulo']?>/<?=$value['capa']?>"></a>
+            <h5> <?= $value['titulo'] ?> </h5>
+            </div>
+            <button class="btn btn-danger text-warning">Deletar</button>
+            
+          <?php } ?> 
+          <a href="\cadastrar_quadrinho" class="btn btn-info">Adicionar novo</a>
+          <h5>Artes:</h5>
+          <?php if(count($this->view->todas_artes) == 0) {?>
+            <p>Não há nada por aqui ainda...</p>
+          <?php } ?>
+          <?php foreach($this->view->todas_artes as $key => $value){?>
+            <div class="col-md-3">
+            <a href="/capitulo?arte=<?=$value['id']?>&us=<?= $value['id_usuario'] ?>"><img id="arte-painel"  src="Midia/<?=$_SESSION['id']?>/Artes/<?=$value['img']?>"></a>
+            <h5> <?= $value['titulo'] ?> </h5>
+            </div>
+            
+            <button class="btn btn-danger text-warning">Deletar</button>
+          <?php } ?> 
+          
+          <a href="\cadastrar_arte" class="btn btn-info">Adicionar nova</a>
+       </div>
+     </div>
+      
+        
+    
+    </div>
+  </div>
+</div>

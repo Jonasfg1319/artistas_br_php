@@ -1,0 +1,19 @@
+<?php $vezes = 0?>
+<div class="mt-4">
+  <div class="container bg-light">
+     <div class="center">
+        <h3>Cadastrar capitulo</h3>
+        <form action="/cap_cadastrado?quadrinho=<?=$_GET['quadrinho']?>&titulo=<?= $_GET['titulo']?>" class="form" method="post"  enctype="multipart/form-data">
+           <label for="">Titulo</label>
+           <input type="text" class="form-control" name="titulo">
+           <label for="">Número</label>
+           <input type="text" class="form-control" name="numero">
+           <label for="">Páginas</label>
+           <div id="paginas"><input type="file" class="form-control m-2" name="pagina-1" id="pag-1"></div>
+           <div class="btn btn-success text-warning m-2" onclick='adiciona();<?php $vezes+=1?>'> Adicionar página</div>
+           <input type="submit" class="btn btn-danger text-warning " value="Cadastrar" name="cadastro-<?=$vezes?>">
+        </form>
+     </div>
+ </div>
+</div> 
+        

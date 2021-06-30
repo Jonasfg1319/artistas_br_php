@@ -1,0 +1,54 @@
+.imagem-tops{
+    width: 180px;
+    height:200px;
+}
+
+#img-apresentacao{
+    width: 320px;
+    height:470px;
+}
+
+#img-cap{
+    width: 700px;
+   
+}
+
+#img-autor{
+    width: 200px;
+    border-radius: 200px;
+    height: 200px;
+}
+
+#img-cap-autor{
+    width: 200px;
+    
+    height: 200px;
+}
+
+#img-perfil-index{
+    width: 90px;
+    height: 50px;
+    border-radius: 250px;
+}
+
+#arte-painel{
+    width: 200px;
+    height: 200px;
+}
+
+.img-index{
+    height: 600px;
+    width: 300px;
+}
+
+#img-quadrinho{
+    width: 450px;
+    height: 400px;
+}
+
+#img-edicao{
+    border-radius:250px;
+    width: 200px;
+    height: 200px;
+}
+

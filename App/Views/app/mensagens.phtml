@@ -1,0 +1,71 @@
+<div>
+  <div class="container bg-light mt-3">
+   <?php //print_r( $this->view->todasMensagens ); $antigo = [];
+     $antigo = [];
+     $contagem = 0;
+     $beg = [];
+     foreach($this->view->todasMensagens as $key => $value){
+        $contagem += 1;
+        if($value['id_remetente'] == $_SESSION['id']){
+        array_push($antigo,$value['id_destinatario']);
+        }else if($value['id_destinatario'] == $_SESSION['id']){
+            array_push($antigo,$value['id_remetente']);
+        }
+       
+     }
+     $novo = array_unique($antigo);
+     print_r($novo);
+     
+     print_r($beg);
+   ?>
+    <div class="center row">
+       <div class="col-md-4 border">
+         <h5 class="text-center">Mensagens</h5>
+         <?php foreach($novo as $key => $value){
+              
+             ?>  <div class="border p-2 row">
+             <div class="col-md-4">Foto</div>
+             <div class="col-md-6">
+                <div><a href="/mensagens?destinatario=<?=$value?>&remetente=<?=$_SESSION['id']?>">Nome: <?php echo $value?></a></div>
+                <?php if( $this->view->todasMensagens[count($this->view->todasMensagens)-1]["id_destinatario"] == $value || $this->view->todasMensagens[count($this->view->todasMensagens)-1]["id_remetente"] == $value){?>
+                <div><?= $this->view->todasMensagens[count($this->view->todasMensagens)-1]["mensagem"]?></div>
+                
+               <?php }else{ ?>
+                  <div>Mensagem</div>
+               <?php } ?>
+             </div>
+          </div>
+         <?php } ?> 
+
+       
+       </div>
+       <div class="col-md-8">
+       <?php if(count($this->view->mensagens != 0)){ ?>
+       <?php if(isset($_GET['destinatario']) && isset($_GET['remetente'])){?>
+          <div class="p-2 border">Mensagens para Nome</div>
+          <?php foreach($this->view->mensagens as $key => $value){ ?>
+          <?php if($value['id_remetente'] == $_SESSION['id']) {?>
+            <div class="text-right"> <p class=" border text-right" > <?= $value['mensagem'] ?>  </p></div>
+           
+          <?php }else { ?>
+          <p> <?= $value['mensagem'] ?>  </p>
+          <?php }?>
+          <?php } ?>
+       <?php } ?>
+         
+       
+          <div class="">
+            <h3>Mensagens aqui</h3>
+            <form action="/adicionaMsg?destinatario=<?=$_GET['destinatario']?>&remetente=<?=$_GET['remetente']?>" method="post">
+              <textarea class="form-control" name="mensagem"></textarea>
+              <input type="submit" class="btn btn-info" value="enviar mensagem">
+            </form>
+          </div>
+          <?php }else{ ?>
+             <h1>Suas mensagens aqui</h1>
+          <?php }?>
+          
+       </div>
+    </div>
+  </div>
+</div>

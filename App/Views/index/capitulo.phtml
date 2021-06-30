@@ -1,0 +1,31 @@
+
+
+<div class="container">
+   <div class="center text-center">
+       <div class="m-2 p-2" style="border-top: 2px solid yellow;">
+       <img src="Midia/<?=$this->view->arte[0]['id_usuario']?>/Artes/<?= $this->view->arte[0]['img']?>" id="img-cap">
+       </diV>
+      
+      
+   </div>
+</div>
+<div class="bg-light p-3">
+<?php //print_r($this->view->comentarios); ?>
+    <h5 class="text-dark">Comentários: <?= count($this->view->comentarios) ?></h5>
+    <?php if(isset($_SESSION['nick'])){?>
+      <button class="btn btn-info" onclick="show()">Postar um comentário</button>
+      <form action="/comentario?arte=<?=$_GET['arte']?>&us=<?=$_GET['us']?>" id="texto" method="post">
+        
+      </form>
+    <?php } ?>
+    <?php if(count($this->view->comentarios) <= 0){ ?>
+      <div class="p-3"> <p>Não há comentários</p> </div>
+    <?php } else {?>
+    <?php foreach($this->view->comentarios as $key => $value) {?>
+       <h5><?= $value['nick_usuario'] ?> </h5>
+       <p> <?= $value['coment'] ?></p>
+       <hr>
+    <?php } }?>
+    
+    
+</div>

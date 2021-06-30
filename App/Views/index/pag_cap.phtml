@@ -1,0 +1,34 @@
+
+
+<div class="container">
+   <div class="center text-center">
+      <?php foreach($this->view->paginas as $key => $value){?>
+       <div class="m-2 p-2" style="border-top: 2px solid yellow;">
+       <img src="Midia/<?=$this->view->qd['id_usuario']?>/Quadrinhos/<?=$this->view->qd['titulo']?>/Capitulos/<?=$this->view->cap['numero']?> - <?= $this->view->cap['titulo'] ?>/<?= $value['img']?>" id="img-cap">
+       </diV>
+      <?php } ?>
+      
+   </div>
+</div>
+<div class="bg-light p-3">
+<?php //print_r($this->view->qd);?>
+    <h5 class="text-dark">Comentários: <?= count($this->view->comentario)?></h5>
+    <?php if(isset($_SESSION['nick'])){?>
+      <button class="btn btn-info" onclick="show()">Postar um comentário</button>
+      <form action="/comentario?val=<?=$_GET['val']?>&qd=<?=$_GET['qd']?>&user=<?=$this->view->qd['id_usuario']?>" id="texto" method="post">
+        
+      </form>
+    <?php } ?>
+    <?php if(count($this->view->comentario) <= 0){ ?>
+      <div class="p-3"> <p>Não há comentários</p> </div>
+    <?php } else {?>
+    <?php foreach($this->view->comentario as $key => $value) {?>
+       <h5><?= $value['nick_usuario'] ?> </h5>
+       <p> <?= $value['coment'] ?></p>
+       <?php if($_SESSION['id'] == $this->view->qd['id_usuario']){?>
+        <button class='btn btn-success'>Responder</button>
+       <?php } ?>
+       <hr>
+    <?php } }?>
+    
+</div>

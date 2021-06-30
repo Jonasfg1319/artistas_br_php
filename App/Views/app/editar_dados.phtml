@@ -1,0 +1,69 @@
+<style>
+input[type='file'] {
+    display: none
+  }
+
+#editar{
+    
+    background-color: red;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 100px;
+    color: yellow;
+}
+
+</style>
+
+<div >
+  <div class="container bg-light p-2">
+   <div class="center">
+      <h4>Dados</h4>
+      <div class="row">
+        <div class="col-md-3">
+        <form method="post" action="/salvar_dados" enctype="multipart/form-data">
+            <img id="img-edicao" src="Midia/<?= $this->view->dadosUser['img_perfil'] ?>">>
+            <label for="file-edit" name="imagem" id="editar" >Mudar foto de perfil</label>
+            <input type="file" name="img" id="file-edit" onchange="previewImagem()">
+            
+        </div>
+        <div class="col-md-9">
+        
+            <label for="">Nick</label>
+            <input class="form-control" type="text" name="nick" value="<?= $this->view->dadosUser['nick'] ?>">
+            <label for="">Nome</label>
+            <input class="form-control" type="text" name="nome" value="<?= $this->view->dadosUser['nome'] ?>">
+            <label for="">Sobrenome</label>
+            <input class="form-control" type="text" name="sobrenome" value="<?= $this->view->dadosUser['sobrenome'] ?>">
+            <label for="">Descrição</label>
+            <textarea class="form-control" name="descricao" ><?= $this->view->dadosUser['descricao'] ?></textarea>
+            <label for="">Email</label>
+            <input class="form-control" type="email" name="email" value="<?= $this->view->dadosUser['email'] ?>">
+            <input type="submit" class="form-control btn btn-info" value="Salvar Dados">
+          </form>
+        </div>
+      </div>
+   </div>
+ </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+			function previewImagem(){
+				var imagem = document.querySelector('input[name=img]').files[0];
+				var preview = document.querySelector("#img-edicao");
+				
+				var reader = new FileReader();
+				
+				reader.onloadend = function () {
+					preview.src = reader.result;
+				}
+				
+				if(imagem){
+					reader.readAsDataURL(imagem);
+				}else{
+					preview.src = "";
+				}
+			}
+		</script>
+       

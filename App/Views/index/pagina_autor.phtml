@@ -1,0 +1,48 @@
+
+
+
+
+<div class="bg-light p-5">
+<div class="container">
+    <div class="row center">
+        <div class="col-md-3"> <img src="Midia/emilie.jpg" id="img-autor" style="border: 4px solid red" alt=""> </div>
+        <div class="col-md-8">
+            <h3><?= $this->view->user['nick'] ?></h3>
+            <p><?= $this->view->user['descricao']?></p>
+            <?php if($_SESSION['id'] != $this->view->user['id']){?>
+            <a href="/mensagens?destinatario=<?= $this->view->user['id'] ?>&remetente=<?=$_SESSION['id']?>" class="btn btn-danger text-warning">Mandar Mensagem</a>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="center m-3">
+        <h3>Quadrinhos</h3>
+        <div class="row">
+           <?php foreach($this->view->quadrinhos as $key => $value) {?>
+            <div class="col-md-4">
+                <img src="Midia/<?=$value['id_usuario']?>/Quadrinhos/<?=$value['titulo']?>/<?=$value['capa']?>" id="img-cap-autor" alt="">
+                <h5><a href="/apresentacao_capitulo?qd=<?=$value['id']?>"><?= $value['titulo']?></a></h5>
+            </div>
+            <?php } ?>
+        </div>
+        <h3>Artes:</h3>
+        <div class="row">
+           <?php foreach($this->view->artes as $key => $value) {?>
+            <div class="col-md-4">
+                <img src="Midia/<?=$value['id_usuario']?>/Artes/<?=$value['img']?>" id="img-cap-autor" alt="">
+                <h5><a href="/capitulo?arte=<?=$value['id']?>&us=<?=$value['id_usuario'] ?>"><?= $value['titulo']?></a></h5>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="center m-3">
+        <h3>Mídias:</h3>
+        <div class="row">
+           
+                <a href="\" class="border col-md-12">Facebook</a>
+                <a href="\" class="border col-md-12">Instagram</a>
+           
+        </div>
+    </div>
+
+</div>
+</div>

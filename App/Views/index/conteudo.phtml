@@ -1,0 +1,77 @@
+<div class="bg-light">
+  <?php $quadro = count($this->view->quadrinho);
+        $arte = count($this->view->artes);
+
+        //print_r($this->view->quadrinho);
+        //print_r($this->view->artes);
+  ?>
+  <div>
+    <h3 class="p-3">Conteúdo</h3>
+    <div class="container row p-2">
+      <div class="col-md-4">
+         <h5>Tipos:</h5>
+         <form class="form" action="/buscar_conteudo" method="post">
+         <select class="form-control" name="tipo" id="tipo">
+            <option value="quadrinhos">Quadrinhos</option>
+            <option value="artes">Artes</option>
+         </select>
+         <h5>Status:</h5>
+         <select class="form-control" name="status" id="status">
+            <option value="Em Andamento">Em Andamento</option>
+            <option value="Completo">Completo</option>
+         </select>
+         <h5>Genêro:</h5>
+         <select class="form-control" name="genero" id="genero">
+            <option value="Ação">Ação</option>
+            <option value="Aventura">Aventura</option>
+            <option value="Terror">Terror</option>
+            <option value="Drama">Drama</option>
+         </select>
+         <input type="submit" class="btn btn-success text-warning mt-3" >
+         </form>
+      </div>
+      <div class="col-md-8">
+        <h6>Resultados:</h6>
+        <div class="row ">
+        <form class="form col-md-12 row" action="/pesquisa" method="post">
+        <input class="form-control p-2 col-md-8" name="pesquisa" type="text" placeholder="Pesquisar por nome">
+        <input type="submit" class="btn btn-success col-md-4 text-light form-control" value="Pesquisar">
+        </form>
+        <?php if($quadro > 0){ 
+            foreach($this->view->quadrinho as $key => $value){ ?>
+            <!-- Aqui é a div-->
+            <div class="col-md-12 row m-3">
+            <a href="/apresentacao_capitulo?qd=<?=$value['id']?>" class="col-md-5"><img style="width: 240px; height: 250px"  src="Midia/<?= $value['id_usuario']?>/Quadrinhos/<?=$value['titulo']?>/<?=$value['capa']?>"></a>
+            <div class="col-md-7">
+            <a href="/apresentacao_capitulo?qd=<?=$value['id']?>"><h5><?= $value['titulo']?></h5></a>
+            <p><?= $value['descricao']?></p>
+            <a href="/pagina_autor?autor=<?=$value['id_usuario']?>"><?= $value['autor']?></a>
+            </div>
+            </div>
+            <!-- Termina a div -->
+         <?php }
+        }else if($arte > 0){ 
+             foreach($this->view->artes as $key => $value){
+            ?>
+            <!-- Aqui é a div-->
+            <div class="col-md-12 row m-3">
+            <a href="capitulo?arte=<?=$value['id']?>&us=<?=$value['id_usuario']?>" class="col-md-5"><img style="width: 240px; height: 250px"  src="Midia/<?= $value['id_usuario']?>/Artes/<?= $value['img'] ?>"></a>
+            <div class="col-md-7">
+            <a href=""><h5><?= $value['titulo'] ?></h5></a>
+            <p><?= $value['descricao'] ?></p>
+            <a href="/pagina_autor?autor=<?=$value['id_usuario']?>"><?= $value['autor'] ?></a>
+            </div>
+            </div>
+            <!-- Termina a div -->
+          <?php }
+        }else {?>
+            <!-- Aqui é a div-->
+              <h4>Nenhum resultado encontrado</h4>
+            <!-- Termina a div -->
+            <?php } ?>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
